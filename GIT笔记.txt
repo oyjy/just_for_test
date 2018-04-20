@@ -1,0 +1,41 @@
+一、创建
+1、在文件夹，右击                git bash here
+2、创建新文件夹                  mkdir ***
+3、设***为当前文件夹             cd ***
+（可直接在目标文件夹开始4）
+4、显示当前目录                  pwd
+5、建立仓库                      git init
+
+二、备份
+1、加入缓存区                    git add readme.txt
+2、提交仓库                      git commit -m '备注'
+
+三、回到过去与未来
+用于commit之后的退回
+1、查看提交历史（编号）          git log --pretty=oneline
+   查看编号（回到未来用？）      git reflog
+2、退回前一个版本                git reset --hard HEAD^
+3、回到未来                      git reset --hard （commit的版本编号）
+4、查看当前文件的内容            cat XXX.txt
+5、查看状态                      git status
+
+四、修改撤销
+情形一：仅工作修改，没有add入暂存区，更没有commit
+                                 git checkout -- readme.txt
+		类似于CTRL+Z，退回到上一次，git add或git commit的状态
+		本质上是版本区替换工作区
+		可用cat XXX.txt查看
+		
+情形二：add入暂存区，没有commit，
+								 git reset HEAD readme.txt
+		退回add前，再执行情形一
+		
+情形三：add了，commit了
+		执行三、会到过去         git reset --hard HEAD^
+只要没提交远程库，都还有救~
+		
+五、删除文件
+1、工作区删除
+2、提交入缓存                    git rm XXX.txt
+3、在版本库删除                  git commit -m "remove xxx.txt"
+4、若工作区误删，可从版本库恢复  git checkout -- test.txt
